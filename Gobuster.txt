@@ -1,0 +1,86 @@
+Gobuster
+
+February 6, 2017dookieWeb Applications
+Gobuster Package Description
+
+Gobuster is a tool used to brute-force:
+
+URIs (directories and files) in web sites.
+DNS subdomains (with wildcard support).
+Because I wanted:
+
+something that didn’t have a fat Java GUI (console FTW).
+to build something that just worked on the command line.
+something that did not do recursive brute force.
+something that allowed me to brute force folders and multiple extensions at once.
+something that compiled to native on multiple platforms.
+something that was faster than an interpreted script (such as Python).
+something that didn’t require a runtime.
+use something that was good with concurrency (hence Go).
+to build something in Go that wasn’t totally useless.
+Source: https://github.com/OJ/gobuster
+Gobuster Homepage | Kali gobuster Repo
+
+Author: OJ Reeves
+License: Apache-2.0
+Tools included in the gobuster package
+
+gobuster – Directory/file and DNS busting tool written in Go
+
+root@kali:~# gobuster -h
+Usage of gobuster:
+  -P string
+        Password for Basic Auth (dir mode only)
+  -U string
+        Username for Basic Auth (dir mode only)
+  -a string
+        Set the User-Agent string (dir mode only)
+  -c string
+        Cookies to use for the requests (dir mode only)
+  -e    Expanded mode, print full URLs
+  -f    Append a forward-slash to each directory request (dir mode only)
+  -fw
+        Force continued operation when wildcard found (dns mode only)
+  -i    Show IP addresses (dns mode only)
+  -l    Include the length of the body in the output (dir mode only)
+  -m string
+        Directory/File mode (dir) or DNS mode (dns) (default "dir")
+  -n    Don't print status codes
+  -p string
+        Proxy to use for requests [http(s)://host:port] (dir mode only)
+  -q    Don't print the banner and other noise
+  -r    Follow redirects
+  -s string
+        Positive status codes (dir mode only) (default "200,204,301,302,307")
+  -t int
+        Number of concurrent threads (default 10)
+  -u string
+        The target URL or Domain
+  -v    Verbose output (errors)
+  -w string
+        Path to the wordlist
+  -x string
+        File extension(s) to search for (dir mode only)
+gobuster Usage Examples
+
+
+
+Scan a website (-u http://192.168.0.155/) for directories using a wordlist (-w /usr/share/wordlists/dirb/common.txt) and print the full URLs of discovered paths (-e):
+
+root@kali:~# gobuster -e -u http://192.168.0.155/ -w /usr/share/wordlists/dirb/common.txt
+
+Gobuster v1.2                OJ Reeves (@TheColonial)
+=====================================================
+[+] Mode         : dir
+[+] Url/Domain   : http://192.168.0.155/
+[+] Threads      : 10
+[+] Wordlist     : /usr/share/wordlists/dirb/common.txt
+[+] Status codes : 301,302,307,200,204
+[+] Expanded     : true
+=====================================================
+http://192.168.0.155/blog (Status: 301)
+http://192.168.0.155/index.html (Status: 200)
+http://192.168.0.155/index (Status: 200)
+http://192.168.0.155/photo (Status: 301)
+http://192.168.0.155/wordpress (Status: 301)
+=====================================================
